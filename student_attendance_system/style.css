@@ -1,0 +1,704 @@
+/* ==========================================================
+
+   Purpose:
+   This stylesheet controls the complete visual design of the
+   Attendance Management System Streamlit application.
+
+   Main Styling Areas:
+   - Global font and theme colors
+   - Streamlit page layout
+   - Sidebar and login form
+   - Topbar / header
+   - Hero section
+   - Dashboard KPI cards
+   - Panels and page headers
+   - Profile photos and avatars
+   - Attendance status badges
+   - Buttons, tables and alerts
+   - Mobile responsive design
+   - Streamlit selectbox language fix
+   ========================================================== */
+
+
+/* ==========================================================
+   Import Google Font
+   Purpose:
+   Loads the Poppins font used across the whole application.
+   ========================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+
+/* ==========================================================
+   Theme Variables
+   Purpose:
+   Store common colors and shadow values in one place.
+   This makes the design easier to maintain.
+   ========================================================== */
+:root {
+  --navy: #071d45;
+  --text: #081b45;
+  --muted: #64748b;
+  --bg: #f5f8fd;
+  --line: #e6edf8;
+  --shadow: 0 14px 35px rgba(15, 23, 42, .10);
+}
+
+
+/* ==========================================================
+   Global Font
+   Purpose:
+   Applies Poppins font to all elements.
+   ========================================================== */
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+
+/* ==========================================================
+   Main Streamlit App Background
+   Purpose:
+   Sets the application background and default text color.
+   ========================================================== */
+.stApp {
+  background: var(--bg);
+  color: var(--text);
+}
+
+
+/* ==========================================================
+   Main Page Container
+   Purpose:
+   Controls page spacing and maximum content width.
+   ========================================================== */
+.block-container {
+  padding-top: 1.4rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  max-width: 1500px;
+}
+
+
+/* ==========================================================
+   Hide Default Streamlit Elements
+   Purpose:
+   Removes Streamlit menu and default footer for a cleaner UI.
+   ========================================================== */
+#MainMenu,
+footer {
+  visibility: hidden;
+}
+
+
+/* ==========================================================
+   Streamlit Header
+   Purpose:
+   Adds a soft white transparent header effect.
+   ========================================================== */
+header[data-testid="stHeader"] {
+  background: rgba(255, 255, 255, .85);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, .04);
+}
+
+
+/* ==========================================================
+   Sidebar Background
+   Purpose:
+   Styles the left sidebar with a dark navy gradient.
+   ========================================================== */
+section[data-testid="stSidebar"] {
+  background: linear-gradient(180deg, var(--navy), #08265b 55%, #061934);
+  border-right: 0;
+}
+
+
+/* ==========================================================
+   Sidebar Text
+   Purpose:
+   Makes all sidebar text white for better contrast.
+   ========================================================== */
+section[data-testid="stSidebar"] * {
+  color: #fff !important;
+}
+
+
+/* ==========================================================
+   Sidebar Input Fields
+   Purpose:
+   Styles username, password and text fields inside the sidebar.
+   ========================================================== */
+section[data-testid="stSidebar"] .stTextInput input,
+section[data-testid="stSidebar"] input[type="text"],
+section[data-testid="stSidebar"] input[type="password"] {
+  background: #fff !important;
+  color: #0f172a !important;
+  -webkit-text-fill-color: #0f172a !important;
+  caret-color: #0f172a !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 12px !important;
+  height: 44px !important;
+  padding-left: 12px !important;
+}
+
+
+/* ==========================================================
+   Sidebar Icons
+   Purpose:
+   Ensures icons inside input boxes are visible.
+   ========================================================== */
+section[data-testid="stSidebar"] svg {
+  color: #0f172a !important;
+  fill: #0f172a !important;
+}
+
+
+/* ==========================================================
+   Sidebar Button
+   Purpose:
+   Styles the login button in the sidebar.
+   ========================================================== */
+section[data-testid="stSidebar"] .stButton button {
+  width: 100%;
+  background: linear-gradient(135deg, #2f6bff, #7c3aed) !important;
+  color: #fff !important;
+  border: 0 !important;
+  border-radius: 10px !important;
+  height: 44px;
+  font-weight: 700;
+  box-shadow: 0 10px 20px rgba(37, 99, 235, .28);
+}
+
+
+/* ==========================================================
+   Sidebar Branding
+   Purpose:
+   Styles the AMS logo and title inside the sidebar.
+   ========================================================== */
+.sidebar-brand {
+  padding: 20px 4px 18px 4px;
+}
+
+.sidebar-logo {
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: .5px;
+}
+
+.sidebar-subtitle {
+  font-size: 13px;
+  opacity: .92;
+  margin-top: 4px;
+}
+
+
+/* ==========================================================
+   Sidebar Section Title
+   Purpose:
+   Styles small uppercase headings such as "Login" or "Navigation".
+   ========================================================== */
+.sidebar-section {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  opacity: .65;
+  margin: 24px 0 8px;
+  text-transform: uppercase;
+}
+
+
+/* ==========================================================
+   Sidebar Decoration
+   Purpose:
+   Displays a large decorative education icon.
+   ========================================================== */
+.sidebar-art {
+  margin-top: 42px;
+  text-align: center;
+  font-size: 76px;
+  line-height: 1;
+  opacity: .95;
+}
+
+
+/* ==========================================================
+   Topbar / Header
+   Purpose:
+   Creates the main header containing the application title
+   and logged-in user information.
+   ========================================================== */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  border-radius: 18px;
+  padding: 16px 22px;
+  box-shadow: var(--shadow);
+  margin-bottom: 22px;
+  border: 1px solid var(--line);
+}
+
+.topbar-left {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+.menu-dot {
+  height: 44px;
+  width: 44px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 23px;
+}
+
+.topbar-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+
+/* ==========================================================
+   Topbar User Area
+   Purpose:
+   Displays user avatar, name and role.
+   ========================================================== */
+.topbar-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #dbeafe, #fff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  border: 1px solid var(--line);
+}
+
+.user-name {
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.user-role {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+
+/* ==========================================================
+   Hero Section
+   Purpose:
+   Displays the main welcome banner on the home page.
+   ========================================================== */
+.hero {
+  background: linear-gradient(135deg, #ffffff, #f7fbff);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 28px 30px;
+  box-shadow: var(--shadow);
+  margin-bottom: 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: 42px;
+  margin: 0;
+  color: var(--text);
+  font-weight: 800;
+}
+
+.hero p {
+  margin: 8px 0 0;
+  color: #475569;
+  font-size: 16px;
+}
+
+.hero-badge {
+  background: #eff6ff;
+  color: #2563eb;
+  border: 1px solid #dbeafe;
+  border-radius: 16px;
+  padding: 14px 18px;
+  font-weight: 800;
+  text-align: center;
+  min-width: 150px;
+}
+
+
+/* ==========================================================
+   KPI Cards
+   Purpose:
+   Displays dashboard statistics such as total students,
+   attendance records and registered faces.
+   ========================================================== */
+.kpi-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: var(--shadow);
+  min-height: 145px;
+}
+
+.kpi-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 28px;
+}
+
+.kpi-number {
+  font-size: 35px;
+  font-weight: 800;
+  margin: 12px 0 2px;
+}
+
+.kpi-label {
+  font-size: 15px;
+  color: #334155;
+  font-weight: 600;
+}
+
+.kpi-small {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+
+/* ==========================================================
+   KPI Color Helpers
+   Purpose:
+   Provides reusable colors for dashboard cards.
+   ========================================================== */
+.c-blue { color: #2563eb }
+.c-green { color: #16a34a }
+.c-purple { color: #7c3aed }
+.c-orange { color: #f97316 }
+
+.bg-blue {
+  background: linear-gradient(135deg, #2563eb, #315bff)
+}
+
+.bg-green {
+  background: linear-gradient(135deg, #22c55e, #16a34a)
+}
+
+.bg-purple {
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9)
+}
+
+.bg-orange {
+  background: linear-gradient(135deg, #fb923c, #f97316)
+}
+
+
+/* ==========================================================
+   Panels
+   Purpose:
+   Generic white card used for student profiles and details.
+   ========================================================== */
+.panel {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+}
+
+
+/* ==========================================================
+   Page Header
+   Purpose:
+   Creates a consistent title area for each dashboard page.
+   ========================================================== */
+.page-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+  margin-bottom: 18px;
+}
+
+.page-head-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.page-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 30px;
+  background: linear-gradient(135deg, #2563eb, #315bff);
+}
+
+.page-head h1 {
+  font-size: 30px;
+  margin: 0;
+  color: var(--text);
+  font-weight: 800;
+}
+
+.page-head p {
+  margin: 4px 0 0;
+  color: var(--muted);
+}
+
+
+/* ==========================================================
+   Record Pill
+   Purpose:
+   Shows small statistic badges on page headers.
+   ========================================================== */
+.record-pill {
+  background: #eff6ff;
+  border: 1px solid #dbeafe;
+  border-radius: 14px;
+  padding: 14px 20px;
+  min-width: 140px;
+  text-align: center;
+}
+
+.record-pill b {
+  display: block;
+  color: #2563eb;
+  font-size: 26px;
+}
+
+
+/* ==========================================================
+   Student Avatar
+   Purpose:
+   Shows default large avatar when no profile photo exists.
+   ========================================================== */
+.large-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #dbeafe, #eff6ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 70px;
+  border: 1px solid #dbeafe;
+}
+
+
+/* ==========================================================
+   Attendance Status Badges
+   Purpose:
+   Shows whether a face is registered or not registered.
+   ========================================================== */
+.status-present {
+  background: #dcfce7;
+  color: #16a34a;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 13px;
+  display: inline-block;
+}
+
+.status-absent {
+  background: #fee2e2;
+  color: #dc2626;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 13px;
+  display: inline-block;
+}
+
+
+/* ==========================================================
+   Buttons
+   Purpose:
+   Styles all Streamlit buttons outside the sidebar.
+   ========================================================== */
+.stButton>button {
+  border-radius: 12px !important;
+  border: 1px solid #dbeafe !important;
+  background: #fff !important;
+  color: #2563eb !important;
+  font-weight: 700 !important;
+  min-height: 44px;
+}
+
+.stButton>button:hover {
+  background: #eff6ff !important;
+  border-color: #2563eb !important;
+}
+
+
+/* ==========================================================
+   Dataframe Tables
+   Purpose:
+   Styles Streamlit tables with rounded corners and shadow.
+   ========================================================== */
+[data-testid="stDataFrame"] {
+  border-radius: 16px !important;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--line);
+}
+
+
+/* ==========================================================
+   Alerts
+   Purpose:
+   Gives Streamlit alert boxes rounded corners.
+   ========================================================== */
+.stAlert {
+  border-radius: 14px !important;
+}
+
+
+/* ==========================================================
+   Headings
+   Purpose:
+   Applies consistent color and weight to headings.
+   ========================================================== */
+h1,
+h2,
+h3 {
+  color: var(--text) !important;
+  font-weight: 800 !important;
+}
+
+
+/* ==========================================================
+   Responsive Design
+   Purpose:
+   Adjusts layout for smaller screens such as tablets
+   and mobile phones.
+   ========================================================== */
+@media(max-width:900px) {
+  .hero h1 {
+    font-size: 30px
+  }
+
+  .topbar-title {
+    font-size: 20px
+  }
+
+  .hero,
+  .topbar,
+  .page-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px
+  }
+
+  .block-container {
+    padding-left: 1rem;
+    padding-right: 1rem
+  }
+}
+
+
+/* ==========================================================
+   User Profile Photo
+   Purpose:
+   Styles uploaded user photos shown in the topbar.
+   ========================================================== */
+.user-photo {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .2);
+}
+
+
+/* ==========================================================
+   Avatar Override
+   Purpose:
+   Ensures avatar size matches profile photo size.
+   ========================================================== */
+.avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #eef2ff;
+  font-size: 28px;
+}
+
+
+/* ==========================================================
+   Language Dropdown Fix
+   Purpose:
+   Fixes blank or invisible text in Streamlit selectboxes,
+   especially the English / Māori language dropdown.
+   ========================================================== */
+.stSelectbox div[data-baseweb="select"]>div {
+  color: #0b1f4d !important;
+  background-color: white !important;
+}
+
+.stSelectbox div[data-baseweb="select"] span {
+  color: #0b1f4d !important;
+}
+
+.stSelectbox div[data-baseweb="select"] input {
+  color: #0b1f4d !important;
+}
+
+
+/* ==========================================================
+   Strong Selectbox Text Fix
+   Purpose:
+   Additional fix for BaseWeb selectbox components used
+   by Streamlit.
+   ========================================================== */
+div[data-baseweb="select"] {
+  background: white !important;
+}
+
+div[data-baseweb="select"] div {
+  color: #0b1f4d !important;
+}
+
+div[data-baseweb="select"] span {
+  color: #0b1f4d !important;
+}
+
+div[data-baseweb="select"] input {
+  color: #0b1f4d !important;
+}
+
+div[data-baseweb="select"] [class*="singleValue"] {
+  color: #0b1f4d !important;
+}
